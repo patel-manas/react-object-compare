@@ -45,7 +45,8 @@ class App extends Component<AppProps, AppState> {
     const id = evt.target.id;
     if (id === 'obj1') {
       this.setState({ obj1: evt.target.value });
-    } else {
+    }
+    if (id === 'obj2') {
       this.setState({ obj2: evt.target.value });
     }
   };
@@ -73,8 +74,8 @@ class App extends Component<AppProps, AppState> {
     allKeys.forEach((key) => {
       let row = {};
       row['key'] = key;
-      row['Object1'] = parsedObj1[key];
-      row['Object2'] = parsedObj2[key];
+      row['Object1'] = '' + parsedObj1[key];
+      row['Object2'] = '' + parsedObj2[key];
       table.push(row);
     });
     this.setState({ table, reset: true });
@@ -91,8 +92,16 @@ class App extends Component<AppProps, AppState> {
     });
   };
 
+  renderColour = (value) => {
+    if (value === 'undefined' || value === 'null') {
+      return 'blue';
+    } else {
+      return 'black';
+    }
+  };
+
   render() {
-    const { hasError, table, reset } = this.state;
+    const { hasError, table, reset, obj1, obj2 } = this.state;
     console.log('>>', table);
     return (
       <div className="wrapper">
@@ -103,6 +112,7 @@ class App extends Component<AppProps, AppState> {
           rows="10"
           cols="50"
           onChange={this.handleInputChange}
+          value={obj1}
         />
         <h3>Object 2</h3>
         <Textarea
@@ -111,6 +121,7 @@ class App extends Component<AppProps, AppState> {
           rows="10"
           cols="50"
           onChange={this.handleInputChange}
+          value={obj2}
         />
         <Stack direction="row" spacing={4} align="center">
           <Button id="compare" colorScheme="blue" onClick={this.compareHandler}>
@@ -139,8 +150,12 @@ class App extends Component<AppProps, AppState> {
                 return (
                   <Tr>
                     <Td>{row.key}</Td>
-                    <Td>{row.Object1}</Td>
-                    <Td>{row.Object2}</Td>
+                    <Td style={{ color: this.renderColour(row.Object1) }}>
+                      {row.Object1}
+                    </Td>
+                    <Td style={{ color: this.renderColour(row.Object2) }}>
+                      {row.Object2}
+                    </Td>
                   </Tr>
                 );
               })}
