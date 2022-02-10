@@ -1,0 +1,13 @@
+h1,
+p {
+  font-family: Lato;
+}
+
+.wrapper {
+  padding: 10px;
+  margin: 10px;
+}
+
+button#compare {
+  margin-top: 10px;
+}
