@@ -104,7 +104,7 @@ class App extends Component<AppProps, AppState> {
           cols="50"
           onChange={this.handleInputChange}
         />
-        <h3>Object 1</h3>
+        <h3>Object 2</h3>
         <Textarea
           id="obj2"
           placeholder="Here is a sample placeholder"
@@ -126,7 +126,7 @@ class App extends Component<AppProps, AppState> {
           <span style={{ color: 'red', fontWeight: 'bold' }}>Invalid JSON</span>
         )}
         {table.length > 0 && (
-          <Table variant="striped" colorScheme="teal" size="sm">
+          <Table variant="simple" colorScheme="teal" size="sm" id="key-table">
             <Thead>
               <Tr>
                 <Th>Key Name</Th>
